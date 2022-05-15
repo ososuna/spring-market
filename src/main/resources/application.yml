@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: spring-market
+  profiles:
+    active: dev
+server:
+  servlet:
+    context-path: /api/v1
+---
+spring:
+  profiles: dev
+server:
+  port: 3001
+---
+spring:
+  profiles: prod
+server:
+  port: 3002
