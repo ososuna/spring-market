@@ -1,12 +1,16 @@
 package com.spring.market.springmarket.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -25,9 +29,6 @@ public class Purchase {
   @Column(name = "id_compra")
   private Integer id;
 
-  @Column(name = "cliente")
-  private String idClient;
-
   @Column(name = "fecha")
   private LocalDateTime date;
 
@@ -39,5 +40,16 @@ public class Purchase {
 
   @Column(name = "estado")
   private String status;
+
+  @JoinColumn(
+    name = "id_cliente",
+    insertable = false,
+    updatable = false
+  )
+  @ManyToOne
+  private Client client;
+
+  @OneToMany(mappedBy = "purchase")
+  private List<PurchasesProduct> purchasesProducts;
 
 }
