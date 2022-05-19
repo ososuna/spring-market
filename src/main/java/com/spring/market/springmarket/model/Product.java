@@ -28,6 +28,9 @@ public class Product {
   @Column(name = "nombre")
   private String name;
 
+  @Column(name = "id_categoria")
+  private Integer categoryId;
+
   @Column(name = "codigo_barras")
   private String code;
 
@@ -47,6 +50,5 @@ public class Product {
     updatable = false
   )
   private Category category;
-
 
 }
