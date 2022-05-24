@@ -1,4 +1,4 @@
-package com.spring.market.springmarket.model.map;
+package com.spring.market.springmarket.model.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class ProductMap {
+public class ProductDto {
   
   private int productId;
   private String name;
@@ -15,6 +15,6 @@ public class ProductMap {
   private double price;
   private int stock;
   private boolean active;
-  private CategoryMap category;
+  private CategoryDto category;
 
 }
