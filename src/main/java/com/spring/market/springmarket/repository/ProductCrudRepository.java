@@ -3,7 +3,6 @@ package com.spring.market.springmarket.repository;
 import java.util.List;
 import java.util.Optional;
 
-import com.spring.market.springmarket.model.Category;
 import com.spring.market.springmarket.model.Product;
 
 import org.springframework.data.repository.CrudRepository;

@@ -3,37 +3,51 @@ package com.spring.market.springmarket.repository;
 import java.util.List;
 import java.util.Optional;
 
-import com.spring.market.springmarket.model.Product;
+import com.spring.market.springmarket.model.dto.ProductDto;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class ProductRepository {
-  
+public class ProductRepository implements ProductRepositoryInterface {
+
+  @Autowired
   private ProductCrudRepository productCrudRepository;
 
-  public List<Product> getAll() {
-    return (List<Product>) productCrudRepository.findAll();
+  @Override
+  public List<ProductDto> getAll() {
+    // TODO Auto-generated method stub
+    return null;
   }
 
-  public List<Product> getByCategory(int categoryId) {
-    return productCrudRepository.findByCategoryIdOrderByNameAsc(categoryId);
+  @Override
+  public Optional<List<ProductDto>> getByCategoryId(int categoryId) {
+    // TODO Auto-generated method stub
+    return null;
   }
 
-  public Optional<List<Product>> getNoStock(int stock, boolean active) {
-    return productCrudRepository.findByStockLessThanAndActive(stock, active);
+  @Override
+  public Optional<List<ProductDto>> getScarseProducts(int quantity) {
+    // TODO Auto-generated method stub
+    return null;
   }
 
-  public Optional<Product> getProduct(int idProduct) {
-    return productCrudRepository.findById(idProduct);
+  @Override
+  public Optional<ProductDto> getProduct(int productId) {
+    // TODO Auto-generated method stub
+    return null;
   }
 
-  public Product save(Product product) {
-    return productCrudRepository.save(product);
+  @Override
+  public ProductDto save(ProductDto product) {
+    // TODO Auto-generated method stub
+    return null;
   }
 
-  public void delete(int idProduct) {
-    productCrudRepository.deleteById(idProduct);
+  @Override
+  public void delete(int productId) {
+    // TODO Auto-generated method stub
+    
   }
 
 }
