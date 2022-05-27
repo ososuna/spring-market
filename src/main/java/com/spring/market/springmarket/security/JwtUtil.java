@@ -3,10 +3,12 @@ package com.spring.market.springmarket.security;
 import java.util.Date;
 
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
+@Component
 public class JwtUtil {
 
   private static final String SECRET = "e2fj7sxmsf78efmjfj";
