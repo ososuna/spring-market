@@ -22,10 +22,11 @@ public class ProductService {
   }
 
   public Optional<ProductDto> getProduct(int productId) {
+    System.out.println(productId);
     return productRepository.getProduct(productId);
   }
 
-  Optional<List<ProductDto>> getByCategoryId(int categoryId) {
+  public Optional<List<ProductDto>> getByCategoryId(int categoryId) {
     return productRepository.getByCategoryId(categoryId);
   }
 
