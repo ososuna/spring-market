@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 @RestController
 @RequestMapping("/product")
 public class ProductController {
@@ -23,11 +27,18 @@ public class ProductController {
   }
 
   @GetMapping
+  @ApiOperation("Get all supermarket products")
+  @ApiResponse(code = 200, message = "Successfully retrieved list of products")
   public ResponseEntity<List<ProductDto>> getAll() {
     return new ResponseEntity<>(productService.getAll(), HttpStatus.OK);
   }
 
   @GetMapping("/{id}")
+  @ApiOperation("Get supermarket product by id")
+  @ApiResponses({
+      @ApiResponse(code = 200, message = "Successfully retrieved product"),
+      @ApiResponse(code = 404, message = "Product not found")
+  })
   public ResponseEntity<ProductDto> getProduct(@PathVariable("id") int productId) {
     return productService.getProduct(productId)
       .map(product -> new ResponseEntity<>(product, HttpStatus.OK))
