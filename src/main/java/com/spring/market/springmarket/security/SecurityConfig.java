@@ -8,14 +8,21 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   private final MarketUserDetailsService marketUserDetailsService;
+  private final JwtFilterRequest jwtFilterRequest;
 
-  public SecurityConfig(MarketUserDetailsService marketUserDetailsService) {
+  public SecurityConfig(
+    MarketUserDetailsService marketUserDetailsService,
+    JwtFilterRequest jwtFilterRequest
+  ) {
     this.marketUserDetailsService = marketUserDetailsService;
+    this.jwtFilterRequest = jwtFilterRequest;
   }
   
   @Override
@@ -32,7 +39,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
       .disable()
       .authorizeRequests()
       .antMatchers("/**/auth").permitAll()
-      .anyRequest().authenticated();
+      .anyRequest()
+      .authenticated().and()
+      .sessionManagement()
+      .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+    http.addFilterBefore(jwtFilterRequest, UsernamePasswordAuthenticationFilter.class);
   }
 
   @Override
